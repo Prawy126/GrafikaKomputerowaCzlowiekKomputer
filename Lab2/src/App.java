@@ -15,7 +15,7 @@ public class App {
         try {
             Renderer mainRenderer = new Renderer(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), args[3]);
             mainRenderer.clear();
-            mainRenderer.drawLine(300, 350, 50, 50, mainRenderer.getLineAlgo());
+            mainRenderer.drawLine(200, 250, 150, 50, mainRenderer.getLineAlgo());
             mainRenderer.save();
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
