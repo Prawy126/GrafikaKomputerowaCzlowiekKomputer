@@ -131,6 +131,75 @@ public class  Renderer {
         }
     }
 
+    public Vec3f barycentric(Vec2f A, Vec2f B, Vec2f C, Vec2f P) {
+        Vec3f v1 = new Vec3f(B.x-A.x, C.x-A.x, A.x-P.x);// tutaj potrzebujemy wektora składającego się ze współrzędnych
+        // x wektorów AB, AC ora PA.
+
+        Vec3f v2 = new Vec3f(B.y-A.y, C.y-A.y, A.y-P.y);// tutaj potrzebujemy wektora składającego się ze współrzędnych
+        // y wektorów AB, AC ora PA.
+
+        Vec3f cross = cross(v1, v2);
+
+        Vec2f uv = new Vec2f(cross.x/cross.z, cross.y/cross.z);// wektor postaci: cross.x / cross.z, cross.y / cross.z
+
+        //
+        Vec3f barycentric = new Vec3f(uv.x, uv.y, 1-uv.x-uv.y);// współrzędne barycentryczne, uv.x, uv.y, 1- uv.x - uv.y
+
+        return barycentric;
+    }
+
+    public Vec3f cross(Vec3f A, Vec3f B) {
+
+        Vec3f vector = new Vec3f(1,1,1);
+
+        vector.x = (A.y * B.z) - (A.z * B.y);
+        vector.y = (-1) * ((A.x * B.z) - (A.z * B.x));
+        vector.z = (A.x * B.y) - (A.y * B.x);
+
+        return vector;
+
+    }
+
+    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C, Vec3f color) {
+
+        float minX = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, minY = Integer.MAX_VALUE, maxY = Integer.MIN_VALUE;
+
+        if (A.x > maxX) maxX = A.x;
+        if (A.x < minX) minX = A.x;
+        if (A.y > maxY) maxY = A.y;
+        if (A.y < minY) minY = A.y;
+
+        if (B.x > maxX) maxX = B.x;
+        if (B.x < minX) minX = B.x;
+        if (B.y > maxY) maxY = B.y;
+        if (B.y < minY) minY = B.y;
+
+        if (C.x > maxX) maxX = C.x;
+        if (C.x < minX) minX = C.x;
+        if (C.y > maxY) maxY = C.y;
+        if (C.y < minY) minY = C.y;
+
+
+        for (int i=(int)minX; i<maxX; i++) {
+            for (int j=(int)minY; j<maxY; j++) {
+                Vec2f P = new Vec2f(i, j);
+
+                Vec3f vector = barycentric(A, B, C, P);
+
+                if (vector.x >= 0 &&
+                        vector.y >= 0 &&
+                        vector.z >= 0 &&
+                        vector.x <= 1 &&
+                        vector.y <= 1 &&
+                        vector.z <= 1)  {
+                    int col = 255 | ((int)color.x%255 << 8) | ((int)color.y%255 << 16) | ((int)color.z%255 << 24);
+                    render.setRGB(i, j, col);
+                }
+
+            }
+        }
+    }
+
     public static BufferedImage verticalFlip(BufferedImage img) {
         int w = img.getWidth();
         int h = img.getHeight();

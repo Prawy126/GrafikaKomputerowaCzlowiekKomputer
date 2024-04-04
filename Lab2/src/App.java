@@ -15,7 +15,7 @@ public class App {
         try {
             Renderer mainRenderer = new Renderer(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), args[3]);
             mainRenderer.clear();
-            mainRenderer.drawLine(200, 250, 150, 50, mainRenderer.getLineAlgo());
+            mainRenderer.drawTriangle(new Vec2f(100,50),new Vec2f(150,75),new Vec2f(200,250),new Vec3f(32,42,25));
             mainRenderer.save();
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
