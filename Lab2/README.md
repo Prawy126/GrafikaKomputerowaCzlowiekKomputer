@@ -37,7 +37,7 @@ public class App {
 }
 ```
 
-- Klasa Renferer:
+- Klasa Renderer:
 
 ```java
 

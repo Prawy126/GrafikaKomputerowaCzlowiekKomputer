@@ -1,5 +1,5 @@
 # GrafikaKomputerowaCzlowiekKomputer
 ## Pierwsza część 
-- [lab 1](https://github.com/Prawy126/GrafikaKomputerowaCzlowiekKomputer/tree/main/Lab1)
-- [lab 2](https://github.com/Prawy126/GrafikaKomputerowaCzlowiekKomputer/tree/main/Lab2)
-- [lab 3](https://github.com/Prawy126/GrafikaKomputerowaCzlowiekKomputer/tree/main/Lab2)
+- [lab 1](https://prawy126.github.io/test/grafikaKomputerowa/lab1/)
+- [lab 2](https://prawy126.github.io/test/grafikaKomputerowa/lab2/)
+- [lab 3](https://prawy126.github.io/test/grafikaKomputerowa/lab2/)
